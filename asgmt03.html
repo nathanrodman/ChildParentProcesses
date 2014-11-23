@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/asgmt.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- template parameters -->
+<!-- InstanceParam name="course" type="text" value="CS201" -->
+<!-- InstanceParam name="asgmtVersion" type="text" value="3" -->
+<title>CS201 Assignment 3</title>
+<style type="text/css">
+<!--
+.code {
+	font-family: Consolas, "Courier New", Courier, monospace;
+	font-size: 14px;
+}
+body {
+	font-family: Cambria, Georgia, "Times New Roman", Times, serif;
+	font-size: 14px;
+}
+.header {
+	font-family: Cambria, Georgia, "Times New Roman", Times, serif;
+	font-size: 22px;
+	font-weight: normal;
+	text-decoration: underline;
+}
+.title {
+	font-size: 24px;
+	font-weight: bold;
+	text-decoration: underline;
+	font-family: Cambria, Georgia, "Times New Roman", Times, serif;
+}
+table caption {
+	font-size: 18px;
+	text-align: left;
+	line-height: 44px;
+	vertical-align: top;
+	text-decoration: underline;
+}
+th {
+	font-weight: normal;
+	text-align: left;
+	text-decoration: underline;
+}
+-->
+</style>
+</head>
+<body>
+<p class="title">CS201 Assignment 3 Instructions</p>
+<!-- InstanceBeginEditable name="description" -->
+<p>Write code that forks into two processes, a <b>parent process</b>, and
+  a <b>child process</b>.</p>
+<p>The <b>parent process</b> will take the arguments to<font face="Courier New, Courier, monospace"> main()</font> and send the characters in them <i>one at a time</i> to the child process through a <b>pipe</b> (one call to <b>write</b> for each character).</p>
+<p>Do not send characters from<font face="Courier New, Courier, monospace" class="code"> argv[0]</font> through the pipe.  Start with<font face="Courier New, Courier, monospace"> argv[1]</font> and
+  continue through the rest of the arguments.</p>
+<p>The <b>child process</b> will read the characters sent by the parent process <span style="font-style: italic">one at a time</span>, and count the number of characters it received from the parent. The child process <span style="font-style: italic">should not</span> use the arguments to<span class="code"> main()</span> <span style="font-style: italic">in any way whatsoever</span>. The child process will communicate the number of characters counted to the parent as the return value from<span class="code"> main()</span>.</p>
+<p>The parent process will need to reap the child process to find out how many characters were counted by the child process.</p>
+<p>It may be of use to know that<font face="Courier"> read()</font> will return immediately
+  with a zero once the other end of the pipe is closed by the parent.</p>
+<p>If I call your code this way: </p>
+<blockquote>
+  <pre><font face="Courier New, Courier, monospace">a03 abcd efg hi</font></pre>
+</blockquote>
+<p>The parent process should print out:</p>
+<blockquote>
+  <pre><font face="Courier New, Courier, monospace">CS201 - Assignment 3 - I. Forgot
+child counted 9 characte</font>rs</pre>
+</blockquote>
+<p><em>Important: printing should be done only by the parent process. The child process should not print anything. </em></p>
+<p>Your output should be formatted exactly as shown (small differences in whitespace are OK). Remember to replace &ldquo;I. Forgot&rdquo; with your own name.</p>
+<p>Start with the provided code  file <strong>a03.c</strong>. Upload your code as <strong>a03.c</strong>. </p>
+<!-- InstanceEndEditable -->
+<p class="header">Required Platform</p>
+<p>I grade your code on  <strong>syccuxfs01.pcc.edu</strong>. Your code is required to compile and run correctly on that  machine.</p>
+<p class="header">Compiling Your Code</p>
+<p>You are required to use these flags when compiling your code:</p>
+<blockquote>
+<table width="571" border="0">
+  <caption>
+    Required gcc Compiler Flags
+  </caption>
+  <tr>
+    <th width="103"><em>flag</em></th>
+    <th width="411"><em>effect of specifying flag</em></th>
+  </tr>
+  <tr>
+    <td>-<span class="code">m32</span></td>
+    <td>compiles 32-bit code, disallows use of 64-bit integer registers</td>
+  </tr>
+  <tr>
+    <td class="code">-std=gnu99</td>
+    <td>allows use of newer features of C</td>
+  </tr>
+  <tr>
+    <td class="code">-Wall</td>
+    <td>compiler produces all possible warnings</td>
+  </tr>
+  <tr>
+    <td class="code">-g</td>
+    <td>includes information needed by debugger in object code</td>
+  </tr>
+</table>
+</blockquote>
+<p>Here is how you would use these flags:</p>
+<blockquote>
+  <p class="code">gcc -m32 -std=gnu99 -Wall -g yourcode.c -o yourcode</p>
+</blockquote>
+<p class="header">Grading Your Code</p>
+<p>Your code needs to compile without errors or warnings and run correctly. Code that does not compile will receive zero points. Code that crashes will receive zero points.</p>
+<p>I use <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)" target="_blank">bash</a> scripts to grade your code. Because of this, it is very important that you submit your code <em>with the file name that was requested</em>. If you change the file name, my scripts will crash, your work will not be graded, you will have to resubmit a corrected version of your work, and you will lose points.</p>
+<p>My scripts produce a log file containing your code, compiler warnings and errors (if any), your code's output, and some statistics that are useful to me. I then personally go through that log file to produce your grade. In other words, the scripts don't generate your grade, they just make it more convenient for <em>me</em> to generate your grade.</p>
+<p class="header">To Submit This Assignment</p>
+<p>Submit the requested file to Desire2Learn. &nbsp; Make sure that your code prints your name, assignment description, and number, as requested. </p>
+<ul>
+  <li>Be  certain to check that you completed the upload successfully. After you click  the Upload File button, you must also click the <strong>SUBMIT ASSIGNMENT </strong>button. This  is very easy to forget. If you do not do this, I will not see your work and you will get a grade of zero for the assignment. I would recommend entering an  email address so you can be notified that the upload was completed  successfully.</li>
+  <li>You  may upload as many versions as you wish prior to the due date. I will only see  and grade the final one. You will not be able to upload assignments after due date.</li>
+</ul>
+<p>Points will be deducted for uploading a file with a name that is not as specified. Every term I get a few students whose approach to following directions is, shall we say, &ldquo;creative.&rdquo; I encourage creativity in general, but there are places where it is <u>not appropriate</u>.</p>
+</body>
+<!-- InstanceEnd --></html>
